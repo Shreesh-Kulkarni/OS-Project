@@ -12,3 +12,9 @@ The whole project can be broken down into 3 steps:
 2. Writing to the '/proc' file system
 
 3. Reading from the '/proc' file system
+
+Once a `pid` has been written to the `/proc/pid` file, subsequent reads from `/proc/pid` will report
+
+1. the command the task is running
+2. the value of the task’s `pid` 
+3. the current state of the task.
