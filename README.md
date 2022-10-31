@@ -17,3 +17,21 @@ Once a `pid` has been written to the `/proc/pid` file, subsequent reads from `/p
 1. the command the task is running
 2. the value of the task’s `pid` 
 3. the current state of the task.
+
+### Procedure
+
+First we have to make an entry to the Kernel Memory to use the /proc pseudo file system. So we start with making a single module or API which runs every time we enter 
+`cat /proc/pid`.
+This module contains multiple functions- proc_read, proc_write, proc_init, proc_exit.
+
+Each function serves its own purpose. `proc_init` and `proc_exit` are used to initiate the proc file system entry in the kernel
+
+`proc_read` is used to read the `pid` values from the kernel(i.e, command of the task, value of `pid`, and current state of the task).
+
+`proc_write` is used to store the pid value to write to the memory for future use by allocating some space
+
+#### Makefile Generation
+
+For Linux Kernel to operate on the module we created, it has to be converted to a `.ko` format (kernel executable file) from a `.c` file.
+
+For this purpose we have to generate a makefile in order to convert the `.c` module to a `.ko` file. The makefile is attached above.
