@@ -35,3 +35,10 @@ Each function serves its own purpose. `proc_init` and `proc_exit` are used to in
 For Linux Kernel to operate on the module we created, it has to be converted to a `.ko` format (kernel executable file) from a `.c` file.
 
 For this purpose we have to generate a makefile in order to convert the `.c` module to a `.ko` file. The makefile is attached above.
+
+#### Code and Logic
+
+Each time the `/proc/proc_mod` file is read, the `proc_read()` function is called
+repeatedly until it returns 0, so there must be logic to ensure that this function returns 0 once it has collected the data.
+
+So the final code is attached above with the name `proc_mod.c` which includes all the codes we discussed(procread, write,init, exit)
