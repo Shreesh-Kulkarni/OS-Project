@@ -4,28 +4,29 @@
 #include <linux/proc fs.h>
 #include <asm/uaccess.h>
 
-#define BUFFER SIZE 128
-#define PROC NAME "YourProcNameHere"
+#define BUFFER_SIZE 128
+#define PROC_NAME "YourProcNameHere"
 
-ssize t proc read(struct file *file, char user *usr buf,
-  size t count, loff t *pos);
+ssize_t proc_read(struct file *file, char __user *usr_buf,
+  size_t count, loff_t *pos);
 
-static struct file operations proc ops = {
-  .owner = THIS MODULE,
-  .read = proc read,
+static struct file_operations proc_ops = {
+  .owner = THIS_MODULE,
+  .read = proc_read,
+  .write = proc_write,
 };
 
 /* This function is called when the module is loaded. */
-int proc init(void)
+int proc_init(void)
 {
   /* creates the /proc/YourProcNameHere entry */
-  proc create(PROC NAME, 0666, NULL, &proc ops);
+  proc_create(PROC_NAME, 0666, NULL, &proc_ops);
   return 0;
 }
 
 /* This function is called when the module is removed. */
-void proc exit(void)
+void proc_exit(void)
 {
   /* removes the /proc/YourProcNameHere entry */
-  remove proc entry(PROC NAME, NULL);
+  remove_proc_entry(PROC_NAME, NULL);
 }
