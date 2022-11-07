@@ -48,7 +48,16 @@ repeatedly until it returns 0, so there must be logic to ensure that this functi
 So the final code is attached above with the name `proc_mod.c` which includes all the codes we discussed(procread, write,init, exit)
 
 ### Output
+
 - Getting a list of valid process identifiers
 ![Screenshot](Screenshots/pid.png)
 - The ouput after running the module for pid = '1', '13069'
 ![Screenshot](Screenshots/output.png)
+
+### Issues
+
+- When we tried to run the modules given the Operating sytems(10th ed) on Ubuntu LTS 20.04, we were unable to get an executable file using the `make` command. Following was the error message -
+![Screenshot](Screenshots/error1.png)
+- After changing the datatype of `proc_ops()` to `const struct proc_ops`, we got another set of errors.
+![Screenshot](Screenshots/error2.png)
+- Upon further research, we found that the definition of `struct proc_ops` was recently changed in the `proc_fs.h` header file. In the [new definition](https://github.com/torvalds/linux/blob/master/include/linux/proc_fs.h) of `proc_ops()`, we no more have the methods like .write, .read and hence are unable to run the programs provided in the textbook. To get past this issue, we decided to use older version of Ubuntu. After using Ubuntu 18.04, the issue was resolved.
