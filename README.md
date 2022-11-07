@@ -6,13 +6,7 @@ Linux Kernel Module for Task Information. (Operating System Concepts, 10th Editi
 ### Description
 This is a Linux kernel module that uses the `/proc` file system for diplaying a task's information based on it's process identifier value `pid`.
 
-The whole project can be broken down into 3 steps:
-
-1. Writing a process identifier to the file `/proc/pid`(Module Instantiation)
-2. Writing to the `/proc` file system
-3. Reading from the `/proc` file system
-
-Once a `pid` has been written to the `/proc/pid` file, subsequent reads from `/proc/pid` will report
+This project involves writing a process identifier to the file /proc/pid. Once a `pid` has been written to the `/proc/pid` file, subsequent reads from `/proc/pid` will report
 
 1. the command the task is running
 2. the value of the task’s `pid` 
@@ -24,6 +18,11 @@ Once a `pid` has been written to the `/proc/pid` file, subsequent reads from `/p
 - Compiler: GCC 7.5.0
 
 ### Procedure
+The whole project can be broken down into 3 steps:
+
+1. Writing a process identifier to the file `/proc/pid`(Module Instantiation)
+2. Writing to the `/proc` file system
+3. Reading from the `/proc` file system
 
 First we have to make an entry to the Kernel Memory to use the /proc pseudo file system. So we start with making a single module or API which runs every time we enter 
 `cat /proc/pid`.
