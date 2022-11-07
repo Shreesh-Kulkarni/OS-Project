@@ -18,6 +18,11 @@ Once a `pid` has been written to the `/proc/pid` file, subsequent reads from `/p
 2. the value of the task’s `pid` 
 3. the current state of the task.
 
+### Environment
+
+- OS: Ubuntu 18.04(Kernel version: 5.4.0-131-generic)
+- Compiler: GCC 7.5.0
+
 ### Procedure
 
 First we have to make an entry to the Kernel Memory to use the /proc pseudo file system. So we start with making a single module or API which runs every time we enter 
@@ -42,3 +47,9 @@ Each time the `/proc/proc_mod` file is read, the `proc_read()` function is calle
 repeatedly until it returns 0, so there must be logic to ensure that this function returns 0 once it has collected the data.
 
 So the final code is attached above with the name `proc_mod.c` which includes all the codes we discussed(procread, write,init, exit)
+
+### Output
+- Getting a list of valid process identifiers
+![Screenshot](Screenshots/pid.png)
+- The ouput after running the module for pid = '1', '13069'
+![Screenshot](Screenshots/output.png)
